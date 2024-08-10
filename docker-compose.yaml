@@ -1,0 +1,14 @@
+services:
+  ares-streaming:
+    build: ./ares-streaming
+    ports:
+      - "7002:7002"
+      - "7003:7003"
+    env_file:
+      - 'network.env'
+  ares-teleoperation:
+    build: ./ares-teleoperation
+    depends_on:
+      - ares-streaming
+    env_file:
+      - 'network.env'

@@ -6,3 +6,4 @@ trap "kill 0" SIGINT
 ssh kaine@ares 'bash -s' < /broadcast
 
 # Start the reception
+ssh kaine@ares 'bash -s' < /receive

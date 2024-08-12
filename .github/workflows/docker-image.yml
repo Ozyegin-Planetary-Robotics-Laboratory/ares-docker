@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Ares Teleoperation Dockerfile
-      run: docker build --file ares-teleoperation/Dockerfile --tag ares-teleoperation:$(date +%s)
+      run: docker build . --file ares-teleoperation/Dockerfile --tag ares-teleoperation:$(date +%s)
 
     - uses: actions/checkout@v4
     - name: Build the Ares Streaming Dockerfile

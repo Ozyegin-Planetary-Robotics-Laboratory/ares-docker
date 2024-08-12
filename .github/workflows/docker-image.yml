@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Ares Teleoperation Dockerfile
+      run: docker build ares-teleoperation --file Dockerfile --tag ares-teleoperation:$(date +%s)
+
+    - uses: actions/checkout@v4
+    - name: Build the Ares Streaming Dockerfile
+      run: docker build ares-streaming --file Dockerfile --tag ares-streaming:$(date +%s)

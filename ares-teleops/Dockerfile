@@ -1,18 +1,11 @@
 # Use the official ROS Noetic full desktop image
 FROM osrf/ros:noetic-desktop-full
 
-# Set environment variables for configuration and defaults
-ENV NODE_VERSION=16.0.0
-
-# Install dependencies for Node.js
+# Install dependencies for building ROS packages 
 RUN apt-get update && apt-get install -y \
     git \
-    can-utils \
-    inetutils-ping \
-    net-tools \
-    libncurses5-dev \
-    curl \
     gnupg2 \
+    libncurses5-dev \
     lsb-release \
     build-essential \
     python3-pip \
@@ -44,28 +37,6 @@ RUN mkdir -p /root/catkin_ws/src && \
     /bin/bash -c "source /opt/ros/noetic/setup.bash && \
     catkin_make"
 
-# Install NVM (Node Version Manager)
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-
-# Set the NVM environment variables
-ENV NVM_DIR="/root/.nvm"
-ENV SHIPPABLE_NODE_VERSION=$NODE_VERSION
-
-# Install Node.js using nvm
-RUN . "$NVM_DIR/nvm.sh" && \
-    nvm install $NODE_VERSION && \
-    nvm alias default $NODE_VERSION && \
-    nvm use default
-
-# Install ares-control
-RUN mkdir -p /root/ares-control && \
-    git clone http://www.github.com/Ozyegin-Planetary-Robotics-Laboratory/ares-control.git /root/ares-control && \
-    cd /root/ares-control && \
-    . "$NVM_DIR/nvm.sh" && \
-    nvm use default && \
-    npm install
-
 RUN echo "source /root/catkin_ws/devel/setup.bash" >> ~/.bashrc
 
 ENTRYPOINT [ "/ros_entrypoint.sh" ]
-CMD [ "roslaunch", "ares_control", "ares.launch" ]

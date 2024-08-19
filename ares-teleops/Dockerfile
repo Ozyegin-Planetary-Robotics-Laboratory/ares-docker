@@ -35,7 +35,7 @@ RUN mkdir -p /root/catkin_ws/src && \
     git clone http://www.github.com/Ozyegin-Planetary-Robotics-Laboratory/deimos_control.git && \
     cd /root/catkin_ws && \
     /bin/bash -c "source /opt/ros/noetic/setup.bash && \
-    catkin_make"
+    catkin_make install"
 
 RUN echo "source /root/catkin_ws/devel/setup.bash" >> ~/.bashrc
 

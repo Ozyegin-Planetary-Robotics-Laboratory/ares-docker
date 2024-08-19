@@ -3,7 +3,7 @@
 trap "kill 0" SIGINT
 
 # Start the broadcast
-ssh kaine@ares 'bash -s' < /broadcast
+ssh kaine@ares 'bash -s' < /broadcast &
 
 # Start the reception
 /receive

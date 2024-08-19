@@ -24,13 +24,13 @@ jobs:
     - name: Build and push ares-stream
       uses: docker/build-push-action@v6
       with:
-        context: ./ares-streaming
+        context: ./ares-streaming/.
         push: true
         tags: ozurover/ares-streaming:latest
 
     - name: Build and push ares-teleops
       uses: docker/build-push-action@v6
       with:
-        context: ./ares-teleops
+        context: ./ares-teleops/.
         push: true
         tags: ozurover/ares-teleops:latest

@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     lsb-release \
     build-essential \
     python3-pip \
+    ros-noetic-joy \
     && rm -rf /var/lib/apt/lists/*
 
 # Source ROS setup bash file automatically on terminal startup
